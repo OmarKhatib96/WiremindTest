@@ -24,7 +24,7 @@
 
 
 
-  <h3 align="center">Automated Fraud Detector</h3>
+  <h3 align="center">Wiremind Junior  Data Science test</h3>
 
 
 <!-- TABLE OF CONTENTS -->
@@ -76,8 +76,9 @@ average absolute for cumulated demand across all the timeline  [90, -60, -30, -2
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Docker](https://docs.docker.com/)
+* [Python 3.7](https://www.python.org/downloads/release/python-370/)
+
 
 
 
@@ -95,7 +96,7 @@ This section should list any major frameworks that you built your project using.
    ```sh
    git clone https://github.com/OmarKhatib96/WiremindTest.git
    ```
-3. Build the docker image
+3. Go to the folder root that contains the docker file and build the docker image in the command line
    ```sh
    docker build -t wiremind .
    ```
