@@ -142,7 +142,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 *Omar KHATIB  - omar.khatib@dauphine.eu
 
-Project Link: [https://github.com/OmarKhatib96/Fraud-Detection-Kafka](https://github.com/OmarKhatib96/WiremindTest)
+Project Link: [https://github.com/OmarKhatib96/WiremindTest](https://github.com/OmarKhatib96/WiremindTest)
 
 
 
