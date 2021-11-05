@@ -58,7 +58,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was carried out for the admission process of Wiremind's junior data scientist position. The goal is to predict the unconstraint demand based on features among which come the price and the remaining days until departures
+This project was carried out for the admission process of Wiremind's junior data scientist position. The goal is to predict the unconstraint demand based on features among which come the price and the remaining days until departures.
+
+-The project can be run by running run.py file or with the Docker procedure (checkout the installation procedure)
 
 -Many models have been experimented (random Forest, SGBBOOST, 1DCONV) but I eventually chose the dense neural network because it converges well with the data provided
 
