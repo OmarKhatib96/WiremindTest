@@ -15,7 +15,7 @@
 from lz4 import frame
 from io import BytesIO
 import pandas as pd
-from const import *
+from library.const import *
 from sklearn.preprocessing import OneHotEncoder
 
 

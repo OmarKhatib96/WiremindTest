@@ -14,8 +14,8 @@
 
 
 
-from  data_prep import *
-from model import *
+from  library.data_prep import *
+from library.model import *
 import logging
 
 #To log events in the hist.log

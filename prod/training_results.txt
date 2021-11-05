@@ -1,1 +1,1 @@
-Mean Squared Error for test set: 26.59130366652457Mean Absolute Error for test set: 2.5043152807396223
+Mean Squared Error for test set: 26.283637028273304Mean Absolute Error for test set: 2.4349941202986716

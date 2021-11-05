@@ -22,7 +22,7 @@
 
 
 from datetime import date
-from const import *
+from library.const import *
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
@@ -35,7 +35,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import tensorflow as tf 
 #custome mean absolute error
 def mae( g,col1,col2 ):
         mae = mean_absolute_error( g[col1], g[col2] )
@@ -47,16 +47,13 @@ class model:
         self.init_model(shape)
         self.ct=ct
 
-    
-
-
     def init_model(self,shape):
         self.deep_model= Sequential()
         self.deep_model.add(Dense(units=51, input_shape=(shape[1],)))
         self.deep_model.add(Dropout(DO))
         self.deep_model.add(Dense(units=18,activation='relu'))
         self.deep_model.add(Dense(units=1))
-        opt = keras.optimizers.RMSprop(lr=learning_rate)
+        opt = tf.keras.optimizers.RMSprop(learning_rate=learning_rate)
         self.deep_model.compile(optimizer = opt, loss = 'mse')
 
     #this method will launch the training (& and the testing as well) the plot of the loss and val_loss is saved as .png file
@@ -76,7 +73,7 @@ class model:
         plt.xlabel('epoch')
         plt.legend(['train', 'validation'], loc='upper left')
         plt.show()
-        plt.savefig('./training-test.png')
+        plt.savefig(plots+'/training-test.png')
 
         #performance measurement (mse,mae during training/test)
         self.build_evaluate_fn(X_train, y_train, X_test, y_test)
@@ -85,9 +82,10 @@ class model:
         y_pred = self.deep_model.predict(X)
         mse = mean_squared_error(y_true, y_pred)
         mae=mean_absolute_error(y_true, y_pred)
+        
         print(f'Mean Squared Error for {name}: {mse}')
         print(f'Mean Absolute Error for {name}: {mae}')
-        f = open("./training_results.txt", "w")
+        f = open(plots+"./training_results.txt", "w")
         f.write(f'Mean Squared Error for {name}: {mse}')
         f.write(f'Mean Absolute Error for {name}: {mae}')
         f.close()        
@@ -128,6 +126,7 @@ class model:
 
         self.full_stat=concatenated
         evaluation_df=concatenated.groupby(['od_origin_time','departure_date','origin_station_name','destination_station_name'])[['predicted_demand_cumul','true_demand_cumul']].apply( mae,'predicted_demand_cumul','true_demand_cumul' ).reset_index()
+        print(evaluation_df)
         return evaluation_df
         
 
@@ -148,7 +147,7 @@ class model:
         plt.title('Accumulated demand over time for the train going from '+origin_station+' to '+destination_station+' at the date '+date_depart+' at '+str(int(od_origin_time/60))+'h'+str(od_origin_time%60))
         plt.legend(loc="upper left")
         plt.show()
-        plt.savefig('./cumulated_predicted_demand'+date_depart+origin_station+destination_station+str(od_origin_time)+'.png')
+        plt.savefig(plots+'/cumulated_predicted_demand'+date_depart+origin_station+destination_station+str(od_origin_time)+'.png')
 
 
 
