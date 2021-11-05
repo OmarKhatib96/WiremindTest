@@ -1,15 +1,26 @@
 
-from lz4 import frame
 
-import os
-import matplotlib.pylab as plt
+
+#----------------------------------------------------------------------------
+# Created By  : Omar KHATIB for Wiremind   Line 3
+# Created Date: 05/11/2021 
+# version ='1.0'
+#This module contains the functions that will prepare the data for the model
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+
+
+
+from lz4 import frame
 from io import BytesIO
 import pandas as pd
 from const import *
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import OneHotEncoder
 
+
+
+#This function reads the data for a lz4 file and return the corresponding dataframe
 def read_data(filename):
     chunk_list=[]#init
     #we will read the file chunk by chunk because it's too big
@@ -21,25 +32,20 @@ def read_data(filename):
     df = pd.concat(chunk_list)
     return df
 
-
-
-
-
-
-def prepare_data(df_train,df_test):
-  
-    # define data
-  scaler = MinMaxScaler()
-    # transform data
+    
+#this function prepare the training,validation and test data for the model 
+def prepare_data(path_to_trainingset,path_to_testset):
+  df_train=read_data(path_to_trainingset)
+  df_test=read_data(path_to_testset)
+  df_train = df_train.dropna()
+  df_train = df_train.drop_duplicates()
+  df_test = df_test.dropna()
+  df_test = df_test.drop_duplicates()
   #training data
   df_train=df_train.drop(columns=['dataset_type'])
   df_train = df_train.dropna()
   df_train = df_train.drop_duplicates()
 
-
-  from sklearn.datasets import make_regression
-  from sklearn.feature_selection import SelectKBest
-  from sklearn.feature_selection import f_regression
 
   #test set 
   df_test = df_test.dropna()
@@ -52,7 +58,6 @@ def prepare_data(df_train,df_test):
   #valdation set  
   y_valid=df_valid['demand']
   X_df_valid=df_valid[['sale_day_x','price','origin_station_name','destination_station_name']]
-
   X_df_valid=X_df_valid.dropna()
 
   #training set 
@@ -69,13 +74,7 @@ def prepare_data(df_train,df_test):
   X_df_train = ct.fit_transform(X_df_train)
   X_df_test = ct.transform(X_df_test)
   X_df_valid=ct.transform(X_df_valid)
-
-  
-
-
-
-  
-  return X_df_train,X_df_test,y_train,y_test,X_df_valid,y_valid
+  return X_df_train,X_df_test,y_train,y_test,X_df_valid,y_valid,df_valid[['od_origin_time','sale_day_x','price','origin_station_name','destination_station_name','departure_date']],ct
 
 
 
