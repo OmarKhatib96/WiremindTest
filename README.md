@@ -66,7 +66,7 @@ This project was carried out for the admission process of Wiremind's junior data
 
 -The feature selection have been carried out by evaluating the importance of each with statistical correlation methods (checkout the data analysis)
 
-- The results of training and validation are logged in the results folder, where you can check the eval.csv file which contains  the table split per origin/destination, with the
+-The results of training and validation are logged in the results folder, where you can check the eval.csv file which contains  the table split per origin/destination, with the
 average absolute for cumulated demand across all the timeline  [90, -60, -30, -20,-15, -10, -7, -6, -5, -3, -2, -1] and not just the final day 0.
 
 -You can plot the evolution of cumulated true demand and cumulated predicted(checkout run.py file) for a particular train. The plot is saved in results folder.
