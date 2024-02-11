@@ -85,7 +85,7 @@ class model:
         
         print(f'Mean Squared Error for {name}: {mse}')
         print(f'Mean Absolute Error for {name}: {mae}')
-        f = open(plots+"./training_results.txt", "w")
+        f = open(plots+"/training_results.txt", "w")
         f.write(f'Mean Squared Error for {name}: {mse}')
         f.write(f'Mean Absolute Error for {name}: {mae}')
         f.close()        

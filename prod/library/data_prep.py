@@ -70,7 +70,7 @@ def prepare_data(path_to_trainingset,path_to_testset):
   num_cols = X_df_test._get_numeric_data().columns
   cat_cols=list(set(cols) - set(num_cols))
   from sklearn.compose import ColumnTransformer
-  ct = ColumnTransformer([('name', OneHotEncoder(sparse=False, handle_unknown='ignore'), cat_cols)], remainder = 'passthrough')
+  ct = ColumnTransformer([('name', OneHotEncoder(handle_unknown='ignore'), cat_cols)], remainder = 'passthrough')
   X_df_train = ct.fit_transform(X_df_train)
   X_df_test = ct.transform(X_df_test)
   X_df_valid=ct.transform(X_df_valid)
